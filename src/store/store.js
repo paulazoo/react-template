@@ -1,5 +1,3 @@
-import LogRocket from 'logrocket';
-
 // Redux Setup
 import { createStore, applyMiddleware, compose } from 'redux';
 
@@ -25,19 +23,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // set up Redux store
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-let store;
-if (process.env.REACT_APP_APP_ENV === 'production') {
-  store = createStore(
-    persistedReducer,
-    composeEnhancers(applyMiddleware(thunk, socketMiddleware)),
-    applyMiddleware(LogRocket.reduxMiddleware())
-  );
-} else {
-  store = createStore(
-    persistedReducer,
-    composeEnhancers(applyMiddleware(thunk, socketMiddleware))
-  );
-}
+const store = createStore(
+  persistedReducer,
+  composeEnhancers(applyMiddleware(thunk, socketMiddleware))
+);
 
 const persistor = persistStore(store);
 

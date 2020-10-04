@@ -7,8 +7,6 @@ import {
   Switch,
 } from 'react-router-dom';
 import AppStateProvider from './state';
-import LogRocket from 'logrocket';
-import setupLogRocketReact from 'logrocket-react';
 import dotenv from 'dotenv';
 
 // Redux
@@ -22,11 +20,6 @@ import App from './App';
 // Custom Components
 
 require('dotenv').config();
-
-if (process.env.REACT_APP_APP_ENV === 'production') {
-  LogRocket.init(process.env.REACT_APP_LOGROCKET_KEY);
-  setupLogRocketReact(LogRocket);
-}
 
 ReactDOM.render(
   <Provider store={store}>
